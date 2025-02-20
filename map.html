@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>College Map</h1>
+    </div>
+
+    <div class="main-content">
+        <div id="map"></div>
+    </div>
+
+    <script>
+        function initMap() {
+            var collegeLocation = {lat: 14.4447189, lng: 75.9017817}; // Coordinates for BIET, Davangere
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: collegeLocation
+            });
+
+            var marker = new google.maps.Marker({
+                position: collegeLocation,
+                map: map,
+                title: 'BIET, Davangere'
+            });
+
+            // Add more markers for buildings, departments, etc.
+            var buildings = [
+                {lat: 14.445, lng: 75.902, title: 'Building A'},
+                {lat: 14.446, lng: 75.903, title: 'Building B'},
+                // Add more as needed
+            ];
+
+            buildings.forEach(function(building) {
+                new google.maps.Marker({
+                    position: {lat: building.lat, lng: building.lng},
+                    map: map,
+                    title: building.title
+                });
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvRD2gEUFwCxFbhrfddCkzbm5pUhB1ChE&callback=initMap"></script>
+</body>
+</html>
